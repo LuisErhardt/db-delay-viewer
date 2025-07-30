@@ -70,16 +70,16 @@ export default function Heatmap() {
         range: 3,
         scale: {
           color: {
-            scheme: "Reds",
-            domain: [0, 17],
+            scheme: "Oranges",
+            domain: [1, 17],
           },
         },
         domain: {
           type: "month",
-          gutter: 5,
+          gutter: 0,
           label: { textAlign: "start" },
         },
-        subDomain: { type: "day_row", width: 6, height: 35, gutter: 0 },
+        subDomain: { type: "day_row", width: 6, height: 50, gutter: 0 },
       },
       [
         [
@@ -96,7 +96,7 @@ export default function Heatmap() {
   if (!error)
     return (
       <div className="max-w-full overflow-x-auto">
-        <div className="m-5" id="cal-heatmap"></div>
+        <div className="my-5" id="cal-heatmap"></div>
         <div className="my-4 text-xs ml-8">
           <a
             className="rounded-md bg-gray-200 p-2 mr-2"

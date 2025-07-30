@@ -30,21 +30,10 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="p-4 max-w-3xl">
-      <h1 className="text-2xl font-semibold py-4">Verspätungen im Regionalverkehr in Köln Hbf</h1>
-      <p>
-        Inspiriert durch diesen{" "}
-        <a
-          className="text-blue-700"
-          href="https://www.reddit.com/r/deutschebahn/comments/1evid66/deutschlandticket_entsch%C3%A4digungen_beantragen/"
-        >
-          Reddit-Thread
-        </a>
-        .
-      </p>
-      <p className="mb-6">
-        Die Seite zeigt Züge im Regionalverkehr mit mindestens 60 Minuten Verspätung bei ihrer Ankunft in Köln Hbf an.
-        Die Daten werden täglich aktualisiert und können direkt monatsweise als Tabelle heruntergeladen werden.
-      </p>
+      <h1 className="text-2xl font-semibold py-4">Cologne delay viewer</h1>
+      <p className="">Regio-Züge mit mindestens 60 Minuten Verspätung in Köln Hbf:</p>
+      <Heatmap />
+      <h2 className="text-xl font-semibold my-2">Daten im Detail:</h2>
       <ul className="max-w-md border border-gray-300 rounded-md bg-white shadow space-y-1">
         {Object.entries(files).map(([year, months]) => (
           <li key={year}>
@@ -64,7 +53,16 @@ const LandingPage: React.FC = () => {
           </li>
         ))}
       </ul>
-      <Heatmap />
+      <p className="my-2">
+        Inspiriert durch diesen{" "}
+        <a
+          className="text-blue-700"
+          href="https://www.reddit.com/r/deutschebahn/comments/1evid66/deutschlandticket_entsch%C3%A4digungen_beantragen/"
+        >
+          Reddit-Thread
+        </a>
+        .
+      </p>
     </div>
   );
 };
