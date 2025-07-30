@@ -32,12 +32,12 @@ type YearMonthMap = {
 
 async function getMergedCSVData(): Promise<string> {
   let data = "";
-  const response = await fetch(`/fileList.json`);
+  const response = await fetch(`fileList.json`);
   const files: YearMonthMap = await response.json();
 
   for (const [year, months] of Object.entries(files)) {
     for (const month of months) {
-      const res = await fetch(`/data/${year}/delays${month}.csv`);
+      const res = await fetch(`data/${year}/delays${month}.csv`);
       if (res.headers.get("Content-Type") === "text/html; charset=utf-8") throw new Error("Datei nicht gefunden");
       const text = await res.text();
       data += text;

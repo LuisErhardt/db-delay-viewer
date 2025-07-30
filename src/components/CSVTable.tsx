@@ -25,7 +25,7 @@ const CSVTable: React.FC = () => {
       setError(null);
 
       try {
-        const response = await fetch(`/data/${year}/delays${filename}.csv`);
+        const response = await fetch(`data/${year}/delays${filename}.csv`);
         if (response.headers.get("Content-Type") === "text/html; charset=utf-8")
           throw new Error("Datei nicht gefunden");
         const csvText = await response.text();

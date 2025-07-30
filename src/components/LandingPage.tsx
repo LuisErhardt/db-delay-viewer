@@ -13,12 +13,12 @@ const LandingPage: React.FC = () => {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const response = await fetch(`/fileList.json`);
+        const response = await fetch(`fileList.json`);
         const data = await response.json();
-        // console.log(data);
         setFiles(data);
       } catch (error) {
         console.log(error);
+
         setError("Error while loading data");
       }
     };

@@ -1,5 +1,7 @@
+// @ts-ignore
 import CalHeatmap from "cal-heatmap";
 import "cal-heatmap/cal-heatmap.css";
+// @ts-ignore
 import Tooltip from "cal-heatmap/plugins/Tooltip";
 import { useEffect, useState } from "react";
 import { loadDelayData } from "../util";
@@ -85,7 +87,7 @@ export default function Heatmap() {
         [
           Tooltip,
           {
-            text: function (date: any, value: any, dayjsDate: any) {
+            text: function (_: any, value: any, dayjsDate: any) {
               return (value ? value : "Keine") + " Verspätungen am " + dayjsDate.format("LL");
             },
           },
@@ -103,7 +105,7 @@ export default function Heatmap() {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              cal.previous();
+              heatmap.previous();
             }}
           >
             ← Previous
@@ -113,7 +115,7 @@ export default function Heatmap() {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              cal.next();
+              heatmap.next();
             }}
           >
             Next →
