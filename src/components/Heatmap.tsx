@@ -70,7 +70,7 @@ export default function Heatmap() {
           locale: "de",
           timezone: "Europe/Berlin",
         },
-        range: 3,
+        range: 2,
         scale: {
           color: {
             scheme: "reds",
@@ -106,7 +106,7 @@ export default function Heatmap() {
     return (
       <div className="max-w-full overflow-x-auto">
         <div className="my-5" id="cal-heatmap"></div>
-        <div className="my-4 text-xs ml-8">
+        <div className="mb-8 text-xs ml-8">
           <a
             className="rounded-md bg-gray-200 p-2 mr-2"
             href="#"
@@ -115,7 +115,7 @@ export default function Heatmap() {
               heatmap.previous();
             }}
           >
-            ← Previous
+            ← Zurück
           </a>
           <a
             className="rounded-md bg-gray-200 p-2 ml-2"
@@ -125,7 +125,7 @@ export default function Heatmap() {
               heatmap.next();
             }}
           >
-            Next →
+            Weiter →
           </a>
         </div>
       </div>

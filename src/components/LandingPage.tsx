@@ -30,7 +30,7 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="p-4 max-w-3xl">
-      <h1 className="text-2xl font-semibold py-4">Cologne delay viewer</h1>
+      <h1 className="text-2xl font-semibold py-4">Cologne Delay Viewer</h1>
       <p className="">Regio-Züge mit mindestens 60 Minuten Verspätung in Köln Hbf:</p>
       <Heatmap />
       <h2 className="text-xl font-semibold my-2">Daten im Detail:</h2>
