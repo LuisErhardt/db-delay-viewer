@@ -42,7 +42,7 @@ const LandingPage: React.FC = () => {
               {months.map((month) => (
                 <li key={month}>
                   <a
-                    href={`/#/${year}/${encodeURIComponent(month)}`}
+                    href={`#/${year}/${encodeURIComponent(month)}`}
                     className="block px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-700 font-semibold"
                   >
                     {dateInNameUmwandeln(month)}
