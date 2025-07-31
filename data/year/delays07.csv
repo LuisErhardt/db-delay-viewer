@@ -1,0 +1,26 @@
+Startbahnhof;Zugnummer;Zielbahnhof;Ankunft_Plan;Ankunft_tatsächlich;Verspätung
+Bonn-Mehlem;RB 48 (17306);Köln Hbf;31.07.2025, 05:22;31.07.2025, 06:45;83
+Koblenz Hbf;RE 5 (28506);Köln Hbf;31.07.2025, 07:28;31.07.2025, 08:33;65
+Bonn-Mehlem;RB 48 (17314);Köln Hbf;31.07.2025, 07:22;31.07.2025, 09:05;104
+Oberhausen Hbf;RE 5 (28511);Köln Hbf;31.07.2025, 10:29;31.07.2025, 12:23;114
+Mönchengladbach Hbf;RB 27 (33725);Köln Hbf;31.07.2025, 11:35;31.07.2025, 12:46;71
+Aachen Hbf;RE 1 (26819);Köln Hbf;31.07.2025, 12:44;31.07.2025, 14:02;78
+Hamm(Westf)Hbf;RE 1 (26816);Köln Hbf;31.07.2025, 13:12;31.07.2025, 14:40;88
+Oberhausen Hbf;RE 5 (28519);Köln Hbf;31.07.2025, 14:29;31.07.2025, 15:32;63
+Oberhausen Hbf;RE 5 (28521);Köln Hbf;31.07.2025, 15:29;31.07.2025, 16:40;72
+Mainz Hbf;RB 26 (25428);Köln Hbf;31.07.2025, 16:02;31.07.2025, 17:28;87
+Hamm(Westf)Hbf;RE 1 (26822);Köln Hbf;31.07.2025, 16:12;31.07.2025, 17:31;79
+Oberhausen Hbf;RE 5 (28523);Köln Hbf;31.07.2025, 16:29;31.07.2025, 17:40;71
+Bonn-Mehlem;RB 48 (17350);Köln Hbf;31.07.2025, 16:22;31.07.2025, 17:56;94
+Koblenz Hbf;RE 5 (28524);Köln Hbf;31.07.2025, 16:28;31.07.2025, 18:24;116
+Oberhausen Hbf;RE 5 (28525);Köln Hbf;31.07.2025, 17:29;31.07.2025, 18:32;64
+Bonn-Mehlem;RB 48 (17354);Köln Hbf;31.07.2025, 17:22;31.07.2025, 18:42;81
+Hamm(Westf)Hbf;RE 1 (26824);Köln Hbf;31.07.2025, 17:12;31.07.2025, 18:50;98
+Koblenz Hbf;RE 5 (28526);Köln Hbf;31.07.2025, 17:28;31.07.2025, 19:05;98
+Mainz Hbf;RB 26 (25460);Köln Hbf;31.07.2025, 18:02;31.07.2025, 19:19;77
+Hamm(Westf)Hbf;RE 1 (26826);Köln Hbf;31.07.2025, 18:12;31.07.2025, 19:20;68
+Koblenz Hbf;RE 5 (28528);Köln Hbf;31.07.2025, 18:28;31.07.2025, 19:50;82
+Mainz Hbf;RB 26 (25434);Köln Hbf;31.07.2025, 19:02;31.07.2025, 20:03;61
+Oberhausen Hbf;RE 5 (28527);Köln Hbf;31.07.2025, 18:29;31.07.2025, 20:08;99
+Hamm(Westf)Hbf;RE 1 (26828);Köln Hbf;31.07.2025, 19:12;31.07.2025, 20:17;66
+Hamm(Westf)Hbf;RE 1 (26830);Köln Hbf;31.07.2025, 20:12;31.07.2025, 21:33;81
