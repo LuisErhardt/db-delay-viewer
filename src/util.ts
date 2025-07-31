@@ -30,7 +30,7 @@ type YearMonthMap = {
   [year: string]: string[];
 };
 
-async function getMergedCSVData(): Promise<string> {
+async function mergeCSVs(): Promise<string> {
   let data = "";
   const response = await fetch(`fileList.json`);
   const files: YearMonthMap = await response.json();
@@ -52,10 +52,10 @@ interface TagesVerspaetung {
   verspaetungen: number;
 }
 
-export async function loadDelayData(): Promise<TagesVerspaetung[]> {
+export async function getDelayDataAsJSON(): Promise<TagesVerspaetung[]> {
   const tagesMap: Record<string, number> = {};
 
-  const csvText = await getMergedCSVData();
+  const csvText = await mergeCSVs();
 
   const parsed = Papa.parse(csvText, {
     header: true,
@@ -69,13 +69,33 @@ export async function loadDelayData(): Promise<TagesVerspaetung[]> {
 
   const rows = parsed.data as any[];
 
+  let lastDateInserted: Date | null = null;
+
   for (const row of rows) {
     const zeit = row["Ankunft_tatsächlich"];
     const [datePart, _] = zeit.split(", ");
     const [day, month, year] = datePart.split(".");
     const datum = `${year}-${month}-${day}T01:00:00.000Z`;
 
+    if (lastDateInserted && lastDateInserted.getDate() != new Date(datum).getDate()) {
+      // Differenz in Millisekunden
+      const diffInMs = Math.abs(new Date(datum).getTime() - lastDateInserted.getTime());
+      // Differenz in Tagen
+      const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+
+      if (diffInDays > 1) {
+        // Füge fehlende Tage hinzu
+        for (let i = 1; i < diffInDays; i++) {
+          const missingDate = new Date(lastDateInserted);
+          missingDate.setDate(missingDate.getDate() + i);
+          const formattedMissingDate = missingDate.toISOString();
+          tagesMap[formattedMissingDate] = 0;
+        }
+      }
+    }
     tagesMap[datum] = (tagesMap[datum] || 0) + 1;
+
+    lastDateInserted = new Date(datum);
   }
 
   return Object.entries(tagesMap).map(([datum, verspaetungen]) => ({

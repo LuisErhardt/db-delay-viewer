@@ -4,7 +4,7 @@ import "cal-heatmap/cal-heatmap.css";
 // @ts-ignore
 import Tooltip from "cal-heatmap/plugins/Tooltip";
 import { useEffect, useState } from "react";
-import { loadDelayData } from "../util";
+import { getDelayDataAsJSON } from "../util";
 
 let dayRowTemplate = (dateHelper: any, { domain }: any) => ({
   name: "day_row",
@@ -46,7 +46,8 @@ export default function Heatmap() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const d = await loadDelayData();
+        const d = await getDelayDataAsJSON();
+        console.log(d);
         setData(d);
       } catch (err) {
         setError("Fehler beim Laden der Daten");
@@ -65,15 +66,15 @@ export default function Heatmap() {
         date: {
           start: new Date(data[0]["datum"]),
           min: new Date(data[0]["datum"]),
-          max: new Date(),
+
           locale: "de",
           timezone: "Europe/Berlin",
         },
         range: 3,
         scale: {
           color: {
-            scheme: "Oranges",
-            domain: [1, 17],
+            scheme: "reds",
+            domain: [0, 17],
           },
         },
         domain: {
@@ -88,7 +89,13 @@ export default function Heatmap() {
           Tooltip,
           {
             text: function (_: any, value: any, dayjsDate: any) {
-              return (value ? value : "Keine") + " Verspätungen am " + dayjsDate.format("LL");
+              if (dayjsDate.$d.getTime() < new Date().setHours(0))
+                return (
+                  (value ? value : "Keine") +
+                  (value === 1 ? " Verspätung am " : " Verspätungen am ") +
+                  dayjsDate.format("LL")
+                );
+              else return "Keine Daten";
             },
           },
         ],
