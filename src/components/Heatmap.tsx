@@ -82,7 +82,7 @@ export default function Heatmap() {
           gutter: 0,
           label: { textAlign: "start" },
         },
-        subDomain: { type: "day_row", width: 6, height: 50, gutter: 0 },
+        subDomain: { type: "day_row", width: 6, height: 60, gutter: 0 },
       },
       [
         [
@@ -106,9 +106,9 @@ export default function Heatmap() {
     return (
       <div className="max-w-full overflow-x-auto">
         <div className="my-5" id="cal-heatmap"></div>
-        <div className="mb-8 text-xs ml-8">
+        <div className="mb-8 ml-8 text-gray-900">
           <a
-            className="rounded-md bg-gray-200 p-2 mr-2"
+            className="rounded-md bg-gray-100 p-2 mr-2"
             href="#"
             onClick={(e) => {
               e.preventDefault();

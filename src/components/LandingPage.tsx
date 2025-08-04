@@ -29,12 +29,12 @@ const LandingPage: React.FC = () => {
   if (error) return <p className="text-red-600 p-4">{error}</p>;
 
   return (
-    <div className="p-4 max-w-3xl">
+    <div className="max-w-3xl">
       <h1 className="text-2xl font-semibold py-4">Cologne Delay Viewer</h1>
       <p className="">Regio-Züge mit mindestens 60 Minuten Verspätung in Köln Hbf:</p>
       <Heatmap />
       <h2 className="text-xl font-semibold my-2">Daten im Detail:</h2>
-      <ul className="max-w-md border border-gray-300 rounded-md bg-white shadow space-y-1">
+      <ul className="max-w-md border border-gray-300 rounded-md shadow space-y-1">
         {Object.entries(files).map(([year, months]) => (
           <li key={year}>
             <div className="font-bold px-4 py-2">{year}</div>
@@ -43,7 +43,7 @@ const LandingPage: React.FC = () => {
                 <li key={month}>
                   <a
                     href={`#/${year}/${encodeURIComponent(month)}`}
-                    className="block px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-700 font-semibold"
+                    className="block px-4 py-2 rounded hover:bg-gray-100 hover:text-[#101457d2] font-semibold"
                   >
                     {dateInNameUmwandeln(month)}
                   </a>
@@ -56,7 +56,7 @@ const LandingPage: React.FC = () => {
       <p className="my-2">
         Inspiriert durch diesen{" "}
         <a
-          className="text-blue-700"
+          className="text-blue-200 underline"
           href="https://www.reddit.com/r/deutschebahn/comments/1evid66/deutschlandticket_entsch%C3%A4digungen_beantragen/"
         >
           Reddit-Thread

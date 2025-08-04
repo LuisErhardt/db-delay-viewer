@@ -74,15 +74,15 @@ const CSVTable: React.FC = () => {
   if (error) return <p className="p-4 text-red-600">Fehler: {error}</p>;
 
   return (
-    <div className="w-full px-2 sm:px-4 py-4">
-      <Link to="/" className="text-blue-600 hover:underline mb-4 inline-block">
+    <div className="">
+      <Link to="/" className="text-[#fbaf08] hover:underline mb-4 inline-block">
         &larr; Zurück zur Übersicht
       </Link>
       <h2 className="text-xl sm:text-2xl font-semibold mb-4 ">
         Verspätungen (mind. 60 min) im {filename ? dateInNameUmwandeln(filename) : ""} {year ? year : ""}
       </h2>
       <button
-        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+        className="mb-4 px-4 py-2 bg-[#00a0a0] text-white rounded hover:bg-[#008585]"
         onClick={async () => {
           doClick();
         }}
@@ -100,9 +100,9 @@ const CSVTable: React.FC = () => {
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-gray-100 bg-gray-50">
             {data.map((row, idx) => (
-              <tr key={idx} className="hover:bg-gray-50">
+              <tr key={idx} className="hover:bg-white">
                 {headers.map((header) => (
                   <td key={header} className="whitespace-nowrap px-4 py-2 text-gray-800">
                     {row[header]}
