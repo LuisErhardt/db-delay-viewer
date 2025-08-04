@@ -70,7 +70,7 @@ export default function Heatmap() {
           locale: "de",
           timezone: "Europe/Berlin",
         },
-        range: 2,
+        range: 1,
         scale: {
           color: {
             scheme: "reds",
@@ -82,7 +82,7 @@ export default function Heatmap() {
           gutter: 0,
           label: { textAlign: "start" },
         },
-        subDomain: { type: "day_row", width: 6, height: 60, gutter: 0 },
+        subDomain: { type: "day_row", width: 12, height: 60, gutter: 0 },
       },
       [
         [
