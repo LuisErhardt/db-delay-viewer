@@ -118,7 +118,7 @@ export default function Heatmap() {
             ← Zurück
           </a>
           <a
-            className="rounded-md bg-gray-200 p-2 ml-2"
+            className="rounded-md bg-gray-100 p-2 ml-2"
             href="#"
             onClick={(e) => {
               e.preventDefault();
