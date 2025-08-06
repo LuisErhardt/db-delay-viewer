@@ -21,5 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm install --save-dev
 
-      - name: Run deploy script
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Deploy to GitHub Pages
         run: npm run deploy
