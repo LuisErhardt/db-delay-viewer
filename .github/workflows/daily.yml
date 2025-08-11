@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: '35 23 * * *'  # 23:30 UTC (Vortag) = 1:30 MESZ (Sommerzeit)
 
+  workflow_dispatch:
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
