@@ -1,0 +1,36 @@
+name: Daily Data Update
+
+on:
+  schedule:
+    - cron: '35 23 * * *'  # 23:30 UTC (Vortag) = 1:30 MESZ (Sommerzeit)
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run delay-catcher
+        run: npx delay-catcher 8000207 public/data
+
+      - name: Generate file list
+        run: node generateFileList.cjs
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "data" || echo "No changes to commit"
+          git push
