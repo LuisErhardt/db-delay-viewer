@@ -2,7 +2,7 @@ name: Daily Data Update
 
 on:
   schedule:
-    - cron: '35 23 * * *'  # 23:30 UTC (Vortag) = 1:30 MESZ (Sommerzeit)
+    - cron: "22 0 * * *" # 23:30 UTC (Vortag) = 1:30 MESZ (Sommerzeit)
 
   workflow_dispatch:
 permissions:
@@ -10,7 +10,7 @@ permissions:
 
 env:
   USERAGENT: https://github.com/LuisErhardt/delay-catcher
-  
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
