@@ -2,14 +2,16 @@ name: Daily Data Update
 
 on:
   schedule:
-    - cron: "22 0 * * *" # 23:30 UTC (Vortag) = 1:30 MESZ (Sommerzeit)
+    - cron: "22 0 * * *"
 
   workflow_dispatch:
+
 permissions:
   contents: write
 
 env:
   USERAGENT: https://github.com/LuisErhardt/delay-catcher
+  TZ: Europe/Berlin
 
 jobs:
   update-data:
@@ -18,6 +20,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Show runner time
+        run: |
+          echo "Time of runner:"
+          date
 
       - name: Set up Node
         uses: actions/setup-node@v4
