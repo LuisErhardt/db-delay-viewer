@@ -35,24 +35,28 @@ async function mergeCSVs(): Promise<string> {
   const response = await fetch(`fileList.json`);
   const files: YearMonthMap = await response.json();
 
+  let firstFile = true;
+
   for (const [year, months] of Object.entries(files)) {
     for (const month of months) {
       const res = await fetch(`data/${year}/delays${month}.csv`);
       if (res.headers.get("Content-Type") === "text/html; charset=utf-8") throw new Error("Datei nicht gefunden");
       const text = await res.text();
-      data += text;
+      const lines = text.split("\n");
+
+      if (firstFile) {
+        // remove empty line at the end of csv
+        data += text.trim() + "\n";
+        firstFile = false;
+      } else {
+        data += lines.slice(1).join("\n").trim() + "\n";
+      }
     }
   }
-
   return data;
 }
 
-interface TagesVerspaetung {
-  datum: string;
-  verspaetungen: number;
-}
-
-export async function getDelayDataAsJSON(): Promise<TagesVerspaetung[]> {
+export async function getDelayDataAsJSON(xLabel: string, yLabel: string): Promise<any[]> {
   const tagesMap: Record<string, number> = {};
 
   const csvText = await mergeCSVs();
@@ -98,9 +102,9 @@ export async function getDelayDataAsJSON(): Promise<TagesVerspaetung[]> {
     lastDateInserted = new Date(datum);
   }
 
-  return Object.entries(tagesMap).map(([datum, verspaetungen]) => ({
-    datum,
-    verspaetungen,
+  return Object.entries(tagesMap).map(([date, value]) => ({
+    [xLabel]: date,
+    [yLabel]: value,
   }));
 }
 
@@ -111,4 +115,49 @@ export function parseDate(input: string): Date | null {
   const month = parseInt(parts[1], 10) - 1;
   const year = parseInt(parts[2], 10);
   return new Date(year, month, day);
+}
+
+export const parseDMY = (s: any) => {
+  let [d, m, y] = s.split(/\D/);
+  return new Date(y, m - 1, d);
+};
+
+export function csvToJSON(data: any): any[] {
+  const tagesMap: Record<string, number> = {};
+
+  const rows = data;
+
+  let lastDateInserted: Date | null = null;
+
+  for (const row of rows) {
+    const zeit = row["Ankunft_tatsächlich"];
+    const [datePart, _] = zeit.split(", ");
+    const [day, month, year] = datePart.split(".");
+    const datum = `${year}-${month}-${day}T01:00:00.000Z`;
+
+    if (lastDateInserted && lastDateInserted.getDate() != new Date(datum).getDate()) {
+      // Differenz in Millisekunden
+      const diffInMs = Math.abs(new Date(datum).getTime() - lastDateInserted.getTime());
+      // Differenz in Tagen
+      const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+
+      if (diffInDays > 1) {
+        // Füge fehlende Tage hinzu
+        for (let i = 1; i < diffInDays; i++) {
+          const missingDate = new Date(lastDateInserted);
+          missingDate.setDate(missingDate.getDate() + i);
+          const formattedMissingDate = missingDate.toISOString();
+          tagesMap[formattedMissingDate] = 0;
+        }
+      }
+    }
+    tagesMap[datum] = (tagesMap[datum] || 0) + 1;
+
+    lastDateInserted = new Date(datum);
+  }
+
+  return Object.entries(tagesMap).map(([date, value]) => ({
+    x: date,
+    y: value,
+  }));
 }

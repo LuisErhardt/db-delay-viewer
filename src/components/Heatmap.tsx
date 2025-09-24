@@ -46,8 +46,8 @@ export default function Heatmap() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const d = await getDelayDataAsJSON();
-        console.log(d);
+        const d = await getDelayDataAsJSON("datum", "verspaetungen");
+        // console.log(d);
         setData(d);
       } catch (err) {
         setError("Fehler beim Laden der Daten");

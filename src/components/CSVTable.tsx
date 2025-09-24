@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
 import { useParams, Link } from "react-router-dom";
-import { dateInNameUmwandeln } from "../util";
+import { csvToJSON, dateInNameUmwandeln } from "../util";
+import VerspaetungenChart from "./Chart";
 
 interface CSVRow {
   [key: string]: string;
@@ -39,6 +40,7 @@ const CSVTable: React.FC = () => {
         }
 
         setData(parsed.data);
+        console.log(parsed.data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unbekannter Fehler");
       } finally {
@@ -89,6 +91,8 @@ const CSVTable: React.FC = () => {
       >
         Daten als CSV herunterladen
       </button>
+      <VerspaetungenChart passedData={csvToJSON(data)} />
+
       <div className="w-full overflow-x-auto rounded-lg border border-gray-300 shadow">
         <table className="min-w-full divide-y divide-gray-200 text-sm sm:text-base">
           <thead className="bg-gray-100">
